@@ -22,4 +22,6 @@ The example input/output files can be seen [here](data/ITAG4.1_proteins.fasta)  
 
 Input file was downloaded from solgenomics.net tomato annotation version 4.1.
 
-NOTE: This program is made for space seperated FASTA Headers as in the example above. 
+**NOTE 1: This program is made for space seperated FASTA Headers as in the example above.**  
+
+**NOTE 2: This program also retrieves FASTA identifiers when no FASTA descriptions exist**  
