@@ -8,16 +8,22 @@ def run_pipeline(input_file, progress_bar):
 
     # Start the progress bar
     progress_bar.start()
-    # select input directory
+
+    # Select input directory
     input_directory = os.path.dirname(input_file)
-    # select input file
+
+    # Select input file
     infile = os.path.basename(input_file)
+    
+    # Select output file
     outfile = f"{os.path.splitext(infile)[0]}_ids.txt"
+
     # Change to the input file's directory
     os.chdir(input_directory)
 
-    # Run seqkit command
+    # Run command
     command = f"awk 'sub(/^>/, \"\")' {infile} | cut -d ' ' -f1 > {outfile}"
+    
     try:
         subprocess.run(["wsl", "bash", "-c", command], check=True, creationflags=subprocess.CREATE_NO_WINDOW)
         progress_bar.stop()
@@ -34,7 +40,7 @@ def start_thread():
         messagebox.showwarning("Input Error", "Please select an input FASTA file.")
         return
     
-    # Start seqkit command in a new thread
+    # Start command in a new thread
     thread = threading.Thread(target=run_pipeline, args=(input_file, progress_bar))
     thread.start()
 
