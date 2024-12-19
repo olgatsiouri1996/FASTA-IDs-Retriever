@@ -16,17 +16,17 @@ The first time you launch a newly installed Linux distribution, a console window
 
 6. You will then need to create a user account and password for your new Linux distribution
 
-* Once the process of installing your Linux distribution with WSL is complete, open the distribution (Ubuntu by default) using the Start menu. You will be asked to create a User   Name and Password for your Linux distribution.
+    * Once the process of installing your Linux distribution with WSL is complete, open the distribution (Ubuntu by default) using the Start menu. You will be asked to create a User   Name and Password for your Linux distribution.
 
-* This User Name and Password is specific to each separate Linux distribution that you install and has no bearing on your Windows user name.
+    * This User Name and Password is specific to each separate Linux distribution that you install and has no bearing on your Windows user name.
 
-* Please note that whilst entering the Password, nothing will appear on screen. This is called blind typing. You won't see what you are typing, this is completely normal.
+    * Please note that whilst entering the Password, nothing will appear on screen. This is called blind typing. You won't see what you are typing, this is completely normal.
 
-* Once you create a User Name and Password, the account will be your default user for the distribution and automatically sign-in on launch.
+    * Once you create a User Name and Password, the account will be your default user for the distribution and automatically sign-in on launch.
 
-* This account will be considered the Linux administrator, with the ability to run sudo (Super User Do) administrative commands.
+    * This account will be considered the Linux administrator, with the ability to run sudo (Super User Do) administrative commands.
 
-* Each Linux distribution running on WSL has its own Linux user accounts and passwords. You will have to configure a Linux user account every time you add a distribution, reinstall, or reset. 
+    * Each Linux distribution running on WSL has its own Linux user accounts and passwords. You will have to configure a Linux user account every time you add a distribution, reinstall, or reset. 
 
 7. Finally, run the following command to make sure that the command line programs work properly  
 
