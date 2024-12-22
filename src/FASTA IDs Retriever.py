@@ -4,7 +4,7 @@ import subprocess
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
-def run_pipeline(input_file, ncbi, progress_bar):
+def run_pipeline(input_file, ncbi, pipe, progress_bar):
 
     # Start the progress bar
     progress_bar.start()
@@ -22,9 +22,13 @@ def run_pipeline(input_file, ncbi, progress_bar):
     os.chdir(input_directory)
 
     # Run command
-    # Choose input data source
-    if ncbi:
-        command = f"awk 'sub(/^>(lcl|gnl)\|/, \"\")' {infile} | cut -d ' ' -f1 > {outfile}"
+    # Choose input data source and field seperator
+    if ncbi and not pipe:
+        command = f"awk 'sub(/^>(lcl|gnl|ref|sp|tr)\|/, \"\")' {infile} | cut -d ' ' -f1 > {outfile}"
+    elif pipe and not ncbi:
+        command = f"awk 'sub(/^>/, \"\")' {infile} | cut -d '|' -f1 > {outfile}"
+    elif ncbi and pipe:
+        command = f"awk 'sub(/^>(lcl|gnl|ref|sp|tr)\|/, \"\")' {infile} | cut -d '|' -f1 > {outfile}"
     else:
         command = f"awk 'sub(/^>/, \"\")' {infile} | cut -d ' ' -f1 > {outfile}"
     
@@ -40,13 +44,14 @@ def run_pipeline(input_file, ncbi, progress_bar):
 def start_thread():
     input_file = input_file_var.get()
     ncbi = ncbi_var.get()
-    
+    pipe = pipe_var.get()
+
     if not input_file:
         messagebox.showwarning("Input Error", "Please select an input FASTA file.")
         return
     
     # Start command in a new thread
-    thread = threading.Thread(target=run_pipeline, args=(input_file, ncbi, progress_bar))
+    thread = threading.Thread(target=run_pipeline, args=(input_file, ncbi, pipe, progress_bar))
     thread.start()
 
 def select_file():
@@ -65,13 +70,17 @@ tk.Button(app, text="Browse", command=select_file).grid(row=0, column=2, padx=10
 
 # Checkbox for additional option
 ncbi_var = tk.BooleanVar(value=False)
-tk.Checkbutton(app, text="Remove ncbi prefix for local/general databases", variable=ncbi_var).grid(row=1, column=1, padx=10, pady=10, sticky="w")
+tk.Checkbutton(app, text="Remove ncbi prefix for local/general/refseq/uniprot databases", variable=ncbi_var).grid(row=1, column=1, padx=10, pady=10, sticky="w")
+
+# Checkbox for additional option
+pipe_var = tk.BooleanVar(value=False)
+tk.Checkbutton(app, text="Pipe(\"|\") as FASTA identifier/FASTA description seperator", variable=pipe_var).grid(row=2, column=1, padx=10, pady=10, sticky="w")
 
 # Progress Bar (indeterminate)
 progress_bar = ttk.Progressbar(app, mode="indeterminate", length=200)
-progress_bar.grid(row=2, column=0, columnspan=3, padx=10, pady=20)
+progress_bar.grid(row=3, column=0, columnspan=3, padx=10, pady=20)
 
 # Start button
-tk.Button(app, text="Run program", command=start_thread).grid(row=3, column=1, padx=10, pady=20)
+tk.Button(app, text="Run program", command=start_thread).grid(row=4, column=1, padx=10, pady=20)
 
 app.mainloop()
