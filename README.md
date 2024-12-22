@@ -16,12 +16,20 @@ Click on the `FASTA IDs Retriever.exe` file
 
 Click `browse` and select an input file
 
+Select whether or not you want to remove the ncbi/refseq/uniprot prefixes `lcl|`, `gnl|`, `ref|`, `sp|`, `tr|`
+
+Select whether or not pipe(`|`) is used as an FASTA identifier/description seperator.   
+The default is space
+
 Click `Run program`
 
-The example input/output files can be seen [here](data/ITAG4.1_proteins.fasta)  and [here](data/ITAG4.1_proteins_ids.txt)
+The example input/output files can be seen [here](data/)
 
-Input file was downloaded from solgenomics.net tomato annotation version 4.1.
+Input file for `example 1` was downloaded from solgenomics.net tomato annotation version 4.1.
 
-**NOTE 1: This program is made for space seperated FASTA Headers as in the example above.**  
+Input file for `example 2` was downloaded from ncbi.
 
-**NOTE 2: This program also retrieves FASTA identifiers when no FASTA descriptions exist**  
+Input file for `example 3` was downloaded from lotus base(MG20 v3.0 proteins file).
+
+
+**NOTE: This program also retrieves FASTA identifiers when no FASTA descriptions exist**  
