@@ -21,6 +21,8 @@ Select whether or not you want to remove the ncbi/refseq/uniprot prefixes `lcl|`
 Select whether or not pipe(`|`) is used as an FASTA identifier/description seperator.   
 The default is space
 
+Select the field number(which part to keep as ID after the pipe or space split of the fasta header). Default is 1
+
 Click `Run program`
 
 The example input/output files can be seen [here](data/)
